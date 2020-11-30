@@ -274,7 +274,81 @@ namespace Project_FinchControl
         /// <param name="finchRobot">finch robot object</param>
         static void TalentShowMixItUp(Finch finchRobot)
         {
-            
+            string userResponse;
+
+            Console.CursorVisible = false;
+
+            DisplayScreenHeader("Mix It Up");
+
+            Console.WriteLine("\tWould you like to see the finch robot perform in a circle or a square?");
+            userResponse = Console.ReadLine();
+            userResponse = userResponse.ToLower();
+
+            if(userResponse == "circle")
+            {
+                Console.WriteLine($"\tThe Finch Robot will now perform in a {userResponse}!");
+                DisplayContinuePrompt();
+
+                finchRobot.setMotors(100, 255);
+
+                for (int loopTimes = 0; loopTimes < 5; loopTimes++)
+                {
+                    finchRobot.setLED(125, 0, 194);
+                    finchRobot.noteOn(392);
+                    finchRobot.wait(600);
+                    finchRobot.setLED(89, 104, 243);
+                    finchRobot.noteOn(294);
+                    finchRobot.wait(600);
+                }
+                finchRobot.setLED(0, 255, 255);
+                finchRobot.noteOn(392);
+                finchRobot.wait(1000);
+                finchRobot.setLED(255, 0, 255);
+                finchRobot.noteOn(440);
+                finchRobot.wait(1000);
+                finchRobot.setLED(248, 93, 125);
+                finchRobot.noteOn(262);
+                finchRobot.wait(1000);
+                finchRobot.noteOff();
+                finchRobot.setLED(0, 0, 0);
+                finchRobot.setMotors(0, 0);
+
+
+            }
+            else if (userResponse == "square")
+            {
+                Console.WriteLine($"\tThe Finch Robot will now perform in a {userResponse}!");
+                DisplayContinuePrompt();
+
+                for (int square = 0; square < 4; square++)
+                {
+                    finchRobot.setMotors(155, 155);
+                    finchRobot.noteOn(262);
+                    finchRobot.setLED(0, 255, 255);
+                    finchRobot.wait(500);
+                    finchRobot.setMotors(155, 155);
+                    finchRobot.noteOn(330);
+                    finchRobot.setLED(140, 33, 97);
+                    finchRobot.wait(500);
+                    finchRobot.setMotors(155, 155);
+                    finchRobot.noteOn(349);
+                    finchRobot.setLED(10, 149, 90);
+                    finchRobot.wait(500);
+                    finchRobot.setMotors(155, 155);
+                    finchRobot.noteOn(392);
+                    finchRobot.setLED(11, 162, 104);
+                    finchRobot.wait(500);
+                    finchRobot.setMotors(-155, 155);
+                    finchRobot.wait(500);
+                }
+                finchRobot.noteOff();
+                finchRobot.setLED(0, 0, 0);
+                finchRobot.setMotors(0, 0);
+
+            }
+
+            DisplayMenuPrompt("Talent Show Menu");
+
         }
 
 
